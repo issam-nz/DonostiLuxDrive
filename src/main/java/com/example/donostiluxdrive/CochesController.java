@@ -1,4 +1,5 @@
 package com.example.donostiluxdrive;
+import clases.MasInfoCoche;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -33,22 +34,22 @@ public class CochesController {
     private Button cochesButtonNav;
 
     @FXML
-    private Button infoCoche0_0Button;
+    private Button infoCoche1Button;
 
     @FXML
-    private Button infoCoche0_1Button;
+    private Button infoCoche2Button;
 
     @FXML
-    private Button infoCoche1_0Button;
+    private Button infoCoche3Button;
 
     @FXML
-    private Button infoCoche1_1Button;
+    private Button infoCoche4Button;
 
     @FXML
-    private Button infoCoche2_0Button;
+    private Button infoCoche5Button;
 
     @FXML
-    private Button infoCoche2_1Button;
+    private Button infoCoche6Button;
 
     @FXML
     private Button inicioButtonNav;
@@ -58,6 +59,15 @@ public class CochesController {
 
     @FXML
     private Button signInButton;
+
+
+    //creacion de objetos de MasInfoCoches
+    private MasInfoCoche coche1 = new MasInfoCoche("Ferrari", "812GTS", "600", "rojo", "1990", "1000");
+    MasInfoCoche coche2 = new MasInfoCoche("Ferrari", "SF90STRADALE", "650", "rojo", "2002", "1200");
+    //MasInfoCoche coche3 = new MasInfoCoche("Rolls-Royce", "Spectre", 570, "amarillo", 2000, 1500);
+    //MasInfoCoche coche4 = new MasInfoCoche("Rolls-Royce", "Dawn", 550, "azul", 2005, 1100);
+    //MasInfoCoche coche5 = new MasInfoCoche("Bugatti", "Chiron", 600, "azul", 2010, 1550);
+    //MasInfoCoche coche6 = new MasInfoCoche("Mercedes", "AMGGT", 450, "gris", 2014, 1400);
 
     @FXML
     void goToCoches(ActionEvent event) {
@@ -72,36 +82,56 @@ public class CochesController {
         }
 
     }
-
     @FXML
-    void goToInfoCoche0_0(ActionEvent event) {
+    void goToInfoCoche(ActionEvent event) {
+        if (event.getSource()==infoCoche1Button)
+            try {
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("InfoCoche-view.fxml"));
+                Parent root = loader.load();
 
+                InfoCohesController controller = loader.getController();
+                controller.setCoche(coche1);
+
+                Scene scene = new Scene(root);
+                Stage stage = new Stage();
+                stage.setScene(scene);
+                stage.show();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+
+        if (event.getSource()==infoCoche2Button)
+            try {
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("InfoCoche-view.fxml"));
+                Parent root = loader.load();
+
+                InfoCohesController controller = loader.getController();
+                controller.setCoche(coche2);
+
+                Scene scene = new Scene(root);
+                Stage stage = new Stage();
+                stage.setScene(scene);
+                stage.show();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
     }
 
-    @FXML
-    void goToInfoCoche0_1(ActionEvent event) {
 
-    }
+    /*void infoCocheContenido(MasInfoCoche coche, String img1, String img2, String img3) {
+        //make the photos in MasInfoCoches desde elos parametros img... y
+        //make los labels desde los infos de coche -> mejor ser otro metodo
+        InfoCohesController.class.get
+        InfoCohesController.modeloLabel.setText(coche1.getMarca());
+        InfoCohesController.anoLabel.setText(coche1.getMarca());
+        InfoCohesController.colorLabel.setText(coche1.getMarca());
+        InfoCohesController.prclabel.setText(coche1.getMarca());
+        InfoCohesController.cvLabel.setText(coche1.getMarca());
+        //crear un scene con el contenido y stage.setScene(esteScene);
 
-    @FXML
-    void goToInfoCoche1_0(ActionEvent event) {
+    }*/
 
-    }
 
-    @FXML
-    void goToInfoCoche1_1(ActionEvent event) {
-
-    }
-
-    @FXML
-    void goToInfoCoche2_0(ActionEvent event) {
-
-    }
-
-    @FXML
-    void goToInfoCoche2_1(ActionEvent event) {
-
-    }
 
     @FXML
     void goToInicio(ActionEvent event) {
