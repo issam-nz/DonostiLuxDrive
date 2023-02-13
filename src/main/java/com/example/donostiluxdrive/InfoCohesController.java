@@ -1,27 +1,66 @@
 package com.example.donostiluxdrive;
 
+import clases.Coche;
+import clases.MasInfoCoche;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.net.URL;
+import java.util.ResourceBundle;
 
-public class InfoCohesController {
-    //Declaracion de variables
+public class InfoCohesController implements Initializable{
+
 
     @FXML
-    private Button minusButton;
+    private Button alquilarButton;
+
     @FXML
-    private Button mayusButton;
+    private static Label anoLabel;
+
+    @FXML
+    private Button cochesButtonNav;
+
+    @FXML
+    private static Label colorLabel;
+
+    @FXML
+    private static Label cvLabel;
+
+    @FXML
+    private ImageView img1;
+
+    @FXML
+    private ImageView img2;
+
+    @FXML
+    private ImageView img3;
+
     @FXML
     private Button inicioButtonNav;
 
     @FXML
-    private Button cochesButtonNav;
+    public Label marcaLabel;
+
+    @FXML
+    private Button mayusButton;
+
+    @FXML
+    private Button minusButton;
+
+    @FXML
+    private static Label modeloLabel;
+
+    @FXML
+    private static Label prclabel;
 
     @FXML
     private Button segurosButtonNav;
@@ -29,8 +68,7 @@ public class InfoCohesController {
     @FXML
     private Button signInButton;
 
-    @FXML
-    private Button alquilarButton;
+    private static MasInfoCoche coche;
 
     //Metodos
 
@@ -108,6 +146,18 @@ public class InfoCohesController {
 
     }
 
+
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+            modeloLabel.setText(coche.getModelo());
+            anoLabel.setText(coche.getAno());
+            colorLabel.setText(coche.getColor());
+            prclabel.setText(coche.getPrecio_base());
+            cvLabel.setText(coche.getCaballos());
+        }
+        public static void setCoche(MasInfoCoche coche) {
+            InfoCohesController.coche = coche;
+        }
 }
 
 
