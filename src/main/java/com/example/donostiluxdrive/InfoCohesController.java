@@ -16,31 +16,23 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public abstract class InfoCohesController implements Initializable{
+public class InfoCohesController implements Initializable{
 
-
-    @FXML
-    private Label precioLabel;
-    @FXML
-    private Label ColorLabel;
 
     @FXML
     private Label CaballosLabel;
 
     @FXML
-    private Button alquilarButton;
+    private Label ColorLabel;
 
     @FXML
-    private static Label anoLabel;
+    private Label anoLabel;
+
+    @FXML
+    private Button cochesButton;
 
     @FXML
     private Button cochesButtonNav;
-
-    @FXML
-    private static Label colorLabel;
-
-    @FXML
-    private static Label cvLabel;
 
     @FXML
     private ImageView img1;
@@ -55,25 +47,16 @@ public abstract class InfoCohesController implements Initializable{
     private Button inicioButtonNav;
 
     @FXML
-    public Label marcaLabel;
+    private Label marcaLabel;
 
     @FXML
-    private Button mayusButton;
+    private Label modeloLabel;
 
     @FXML
-    private Button minusButton;
-
-    @FXML
-    private static Label modeloLabel;
-
-    @FXML
-    private static Label prclabel;
+    private Label precioLabel;
 
     @FXML
     private Button segurosButtonNav;
-
-    @FXML
-    private Button signInButton;
 
     private static MasInfoCoche coche;
 
@@ -118,15 +101,7 @@ public abstract class InfoCohesController implements Initializable{
     }
     @FXML
     void goToSignIn(ActionEvent event) {
-        try {
-            Parent root = FXMLLoader.load(getClass().getResource("LoginSignup-view.fxml"));
-            Scene scene = new Scene(root);
-            Stage stage = (Stage) signInButton.getScene().getWindow();
-            stage.setScene(scene);
-            stage.show();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+
     }
 
     @FXML
@@ -155,7 +130,7 @@ public abstract class InfoCohesController implements Initializable{
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-
+            rellenarCoche1();
         }
         /*
         public void setCoche(MasInfoCoche coche, String img1, String img2, String img3) {
