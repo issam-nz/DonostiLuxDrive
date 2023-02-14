@@ -1,6 +1,7 @@
-package com.example.donostiluxdrive.form;
+package com.example.donostiluxdrive;
 
 import clases.Coche;
+import clases.database;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -27,6 +28,7 @@ public class FechaFormularioController {
 
     @FXML
     private Button nextButton;
+    ObservableList<Coche> cochesList;
 
     @FXML
     void goToMarcaFormulario(ActionEvent event) throws IOException {
@@ -50,10 +52,10 @@ public class FechaFormularioController {
                 "WHERE (fechaIn <= ? AND fechaFin >= ?) OR " +
                 "(fechaIn <= ? AND fechaFin >= ?) OR " +
                 "(fechaIn >= ? AND fechaFin <= ?))";
-        ObservableList<Coche> cochesList = FXCollections.observableArrayList();
+        cochesList = FXCollections.observableArrayList();
 
-        Connection conn = null;
-        try (PreparedStatement stmt = conn.prepareStatement(query)) {
+        try (Connection conn = database.connectDb();
+             PreparedStatement stmt = conn.prepareStatement(query)) {
             stmt.setDate(1, Date.valueOf(fechaIn));
             stmt.setDate(2, Date.valueOf(fechaIn));
             stmt.setDate(3, Date.valueOf(fechaFin));
@@ -81,14 +83,7 @@ public class FechaFormularioController {
 
         //To pass the list of available cars to the next form, you can add the following code to the section that handles the case where one or more cars are available:
         if (!cochesList.isEmpty()) {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("MarcaForm-view.fxml"));
-            Parent marcaFormParent = loader.load();
-            MarcaFormularioController marcaFormController = loader.getController();
-            marcaFormController.setAvailableCars(cochesList);
-            Scene marcaFormScene = new Scene(marcaFormParent);
-            Stage currentStage = (Stage) nextButton.getScene().getWindow();
-            currentStage.setScene(marcaFormScene);
-            currentStage.show();
+            goToMarcaFormulario();
         };
     }
 
@@ -98,6 +93,17 @@ public class FechaFormularioController {
         alert.setHeaderText(null);
         alert.setContentText(mensaje);
         alert.showAndWait();
-    };
+    }
+
+    public void goToMarcaFormulario() throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("MarcaFormulario-view.fxml"));
+        Parent marcaFormParent = loader.load();
+        MarcaFormularioController marcaFormController = loader.getController();
+        marcaFormController.setAvailableCars(cochesList);
+        Scene marcaFormScene = new Scene(marcaFormParent);
+        Stage currentStage = (Stage) nextButton.getScene().getWindow();
+        currentStage.setScene(marcaFormScene);
+        currentStage.show();
+    }
 
 }

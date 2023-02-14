@@ -1,4 +1,4 @@
-package com.example.donostiluxdrive.form;
+package com.example.donostiluxdrive;
 
 import clases.Coche;
 import javafx.collections.ObservableList;

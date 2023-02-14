@@ -6,6 +6,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -87,20 +88,15 @@ public class CochesController {
     }
     @FXML
     void goToInfoCoche(ActionEvent event) {
-        if (event.getSource() == infoCoche1Button) {
-            clickedButton = "infoCoche1Button";
-
-        }
-
+//        if (event.getSource() == infoCoche1Button) {
+//            clickedButton = "infoCoche1Button";
+//        }
         try {
-
             Parent root = FXMLLoader.load(getClass().getResource("InfoCoche-view.fxml"));
-
             Scene scene = new Scene(root);
-            Stage stage = (Stage) cochesButtonNav.getScene().getWindow();
+            Stage stage = (Stage) infoCoche1Button.getScene().getWindow();
             stage.setScene(scene);
             stage.show();
-
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -158,15 +154,15 @@ public class CochesController {
     @FXML
     void goToReserva(ActionEvent event) {
         try {
-            Parent root = FXMLLoader.load(getClass().getResource("ReservaFormulario-view.fxml"));
-            Scene scene = new Scene(root);
-            Stage stage = (Stage) alquilarCoche0_0Button.getScene().getWindow();
-            stage.setScene(scene);
-            stage.show();
-        } catch (IOException e) {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("FechaFormulario-view.fxml"));
+            Parent root = loader.load();
+            Stage stage = new Stage();
+            stage.initModality(Modality.APPLICATION_MODAL);
+            stage.setScene(new Scene(root));
+            stage.showAndWait();
+        } catch (Exception e) {
             e.printStackTrace();
         }
-
     }
 
     @FXML

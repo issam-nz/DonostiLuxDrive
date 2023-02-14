@@ -1,4 +1,4 @@
-package com.example.donostiluxdrive.form;
+package com.example.donostiluxdrive;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
