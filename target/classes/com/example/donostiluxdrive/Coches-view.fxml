@@ -145,7 +145,7 @@
                                     <Font name="Impact" size="17.0" />
                                  </font>
                               </Button>
-                              <Button fx:id="infoCoche0_0Button" mnemonicParsing="false" onAction="#goToInfoCoche0_0" prefHeight="25.0" prefWidth="220.0" style="-fx-border-color: #697cd0; -fx-background-radius: 8px; -fx-border-radius: 4px; -fx-border-width: 2px;" styleClass="borton-info" text="VER MÁS INFO" textFill="#303c72">
+                              <Button fx:id="infoCoche1Button" mnemonicParsing="false" onAction="#goToInfoCoche" prefHeight="25.0" prefWidth="220.0" style="-fx-border-color: #697cd0; -fx-background-radius: 8px; -fx-border-radius: 4px; -fx-border-width: 2px;" styleClass="borton-info" text="VER MÁS INFO" textFill="#303c72">
                                  <font>
                                     <Font name="Impact" size="17.0" />
                                  </font>
@@ -204,7 +204,7 @@
                                     <Font name="Impact" size="17.0" />
                                  </font>
                               </Button>
-                              <Button fx:id="infoCoche2_0Button" mnemonicParsing="false" onAction="#goToInfoCoche2_0" prefHeight="25.0" prefWidth="220.0" style="-fx-border-color: #697cd0; -fx-background-radius: 8px; -fx-border-radius: 4px; -fx-border-width: 2px;" styleClass="borton-info" text="VER MÁS INFO" textFill="#303c72">
+                              <Button fx:id="infoCoche2Button" mnemonicParsing="false" onAction="#goToInfoCoche" prefHeight="25.0" prefWidth="220.0" style="-fx-border-color: #697cd0; -fx-background-radius: 8px; -fx-border-radius: 4px; -fx-border-width: 2px;" styleClass="borton-info" text="VER MÁS INFO" textFill="#303c72">
                                  <font>
                                     <Font name="Impact" size="17.0" />
                                  </font>
@@ -263,7 +263,7 @@
                                     <Font name="Impact" size="17.0" />
                                  </font>
                               </Button>
-                              <Button fx:id="infoCoche1_0Button" mnemonicParsing="false" onAction="#goToInfoCoche1_0" prefHeight="25.0" prefWidth="220.0" style="-fx-border-color: #697cd0; -fx-background-radius: 8px; -fx-border-radius: 4px; -fx-border-width: 2px;" styleClass="borton-info" text="VER MÁS INFO" textFill="#303c72">
+                              <Button fx:id="infoCoche3Button" mnemonicParsing="false" onAction="#goToInfoCoche" prefHeight="25.0" prefWidth="220.0" style="-fx-border-color: #697cd0; -fx-background-radius: 8px; -fx-border-radius: 4px; -fx-border-width: 2px;" styleClass="borton-info" text="VER MÁS INFO" textFill="#303c72">
                                  <font>
                                     <Font name="Impact" size="17.0" />
                                  </font>
@@ -319,7 +319,7 @@
                                     <Font name="Impact" size="17.0" />
                                  </font>
                               </Button>
-                              <Button fx:id="infoCoche0_1Button" mnemonicParsing="false" onAction="#goToInfoCoche0_1" prefHeight="25.0" prefWidth="220.0" style="-fx-border-color: #697cd0; -fx-background-radius: 8px; -fx-border-radius: 4px; -fx-border-width: 2px;" styleClass="borton-info" text="VER MÁS INFO" textFill="#303c72">
+                              <Button fx:id="infoCoche4Button" mnemonicParsing="false" onAction="#goToInfoCoche" prefHeight="25.0" prefWidth="220.0" style="-fx-border-color: #697cd0; -fx-background-radius: 8px; -fx-border-radius: 4px; -fx-border-width: 2px;" styleClass="borton-info" text="VER MÁS INFO" textFill="#303c72">
                                  <font>
                                     <Font name="Impact" size="17.0" />
                                  </font>
@@ -378,7 +378,7 @@
                                     <Font name="Impact" size="17.0" />
                                  </font>
                               </Button>
-                              <Button fx:id="infoCoche1_1Button" mnemonicParsing="false" onAction="#goToInfoCoche1_1" prefHeight="25.0" prefWidth="220.0" style="-fx-border-color: #697cd0; -fx-background-radius: 8px; -fx-border-radius: 4px; -fx-border-width: 2px;" styleClass="borton-info" text="VER MÁS INFO" textFill="#303c72">
+                              <Button fx:id="infoCoche5Button" mnemonicParsing="false" onAction="#goToInfoCoche" prefHeight="25.0" prefWidth="220.0" style="-fx-border-color: #697cd0; -fx-background-radius: 8px; -fx-border-radius: 4px; -fx-border-width: 2px;" styleClass="borton-info" text="VER MÁS INFO" textFill="#303c72">
                                  <font>
                                     <Font name="Impact" size="17.0" />
                                  </font>
@@ -437,7 +437,7 @@
                                     <Font name="Impact" size="17.0" />
                                  </font>
                               </Button>
-                              <Button fx:id="infoCoche2_1Button" mnemonicParsing="false" onAction="#goToInfoCoche2_1" prefHeight="25.0" prefWidth="220.0" style="-fx-border-color: #697cd0; -fx-background-radius: 8px; -fx-border-radius: 4px; -fx-border-width: 2px;" styleClass="borton-info" text="VER MÁS INFO" textFill="#303c72">
+                              <Button fx:id="infoCoche6Button" mnemonicParsing="false" onAction="#goToInfoCoche" prefHeight="25.0" prefWidth="220.0" style="-fx-border-color: #697cd0; -fx-background-radius: 8px; -fx-border-radius: 4px; -fx-border-width: 2px;" styleClass="borton-info" text="VER MÁS INFO" textFill="#303c72">
                                  <font>
                                     <Font name="Impact" size="17.0" />
                                  </font>
