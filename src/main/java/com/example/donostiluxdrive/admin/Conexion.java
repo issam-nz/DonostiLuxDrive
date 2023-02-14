@@ -5,34 +5,33 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 
 public class Conexion {
-	private Connection connection;
-	private String url = "jdbc:mysql://localhost/donostiluxdrive";
-	private String usuario = "root";
-	private String contrasena = "";
-	
-	public Connection getConnection() {
-		return connection;
-	}
-	public void setConnection(Connection connection) {
-		this.connection = connection;
-	}
-	
-	public void establecerConexion(){
-		try {
-			Class.forName("com.mysql.jdbc.Driver");
-			connection = DriverManager.getConnection(url, usuario, contrasena);
-		} catch (ClassNotFoundException e) {
-			e.printStackTrace();
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-	}
-	
-	public void cerrarConexion(){
-		try {
-			connection.close();
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-	}	
+    private Connection conexion;
+    private String url = "jdbc:mysql://localhost/donostiluxdrive";
+    private String usuario = "root";
+    private String contrasena = "";
+
+    public void establecerConexion() {
+        try {
+            Class.forName("com.mysql.jdbc.Driver");
+            conexion = DriverManager.getConnection(url, usuario, contrasena);
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void cerrarConexion() {
+        try {
+            if (conexion != null && !conexion.isClosed()) {
+                conexion.close();
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public Connection getConexion() {
+        return conexion;
+    }
 }

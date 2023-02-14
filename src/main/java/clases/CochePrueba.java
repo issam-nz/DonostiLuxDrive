@@ -1,4 +1,4 @@
-package com.example.donostiluxdrive.admin;
+package clases;
 
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleIntegerProperty;
@@ -9,28 +9,28 @@ import javafx.collections.ObservableList;
 import java.sql.*;
 
 public class CochePrueba {
-    private IntegerProperty id_coche;
+    private IntegerProperty id;
     private StringProperty marca;
     private StringProperty modelo;
     private StringProperty color;
-    private IntegerProperty precio_base;
+    private IntegerProperty precioBase;
 
-    public CochePrueba(int id_coche, String marca, String modelo, String color, int precio_base) {
-        this.id_coche = new SimpleIntegerProperty(id_coche);
+    public CochePrueba( String marca, String modelo, String color, int precioBase) {
+
         this.marca = new SimpleStringProperty(marca);
         this.modelo = new SimpleStringProperty(modelo);
         this.color = new SimpleStringProperty(color);
-        this.precio_base = new SimpleIntegerProperty(precio_base);
+        this.precioBase = new SimpleIntegerProperty(precioBase);
     }
 
     //Metodos getter and setter
     //id
     public Integer getId_coche(){
-        return id_coche.get();
+        return id.get();
     }
 
     public void setId_coche(Integer id_coche){
-        this.id_coche = new SimpleIntegerProperty(id_coche);
+        this.id = new SimpleIntegerProperty(id_coche);
     }
     //Marca
     public String getMarca(){
@@ -58,15 +58,15 @@ public class CochePrueba {
     }
     //Precio Base
     public Integer getPrecio_base(){
-        return precio_base.get();
+        return precioBase.get();
     }
 
     public void setPrecio_base(Integer precio_base){
-        this.precio_base = new SimpleIntegerProperty(precio_base);
+        this.precioBase = new SimpleIntegerProperty(precio_base);
     }
 
     public IntegerProperty idCoche(){
-        return id_coche;
+        return id;
     }
 
     public StringProperty marca(){
@@ -82,19 +82,19 @@ public class CochePrueba {
     }
 
     public IntegerProperty generoProperty(){
-        return precio_base;
+        return precioBase;
     }
 
     public int guardarRegistro(Connection connection){
         try {
             //Evitar inyeccion SQL.
             PreparedStatement instruccion =
-                    connection.prepareStatement("INSERT INTO coches (marca, modelo, color, precio_base) "+
+                    connection.prepareStatement("INSERT INTO coches (marca, modelo, color, precioBase) "+
                             "VALUES (?, ?, ?, ?, ?, ?, ?)");
             instruccion.setString(1, modelo.get());
             instruccion.setString(2, marca.get());
             instruccion.setString(3, color.get());
-            instruccion.setInt(4, precio_base.get());
+            instruccion.setInt(4, precioBase.get());
             return instruccion.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
@@ -111,13 +111,13 @@ public class CochePrueba {
                                     " marca = ?,  "+
                                     " modelo = ?, "+
                                     " color = ?,  "+
-                                    " precio_base = ?, "+
+                                    " precioBase = ?"
 
                     );
             instruccion.setString(1, modelo.get());
             instruccion.setString(2, marca.get());
             instruccion.setString(3, color.get());
-            instruccion.setInt(4, precio_base.get());
+            instruccion.setInt(4, precioBase.get());
             return instruccion.executeUpdate();
 
         } catch (SQLException e) {
@@ -132,7 +132,7 @@ public class CochePrueba {
                     "DELETE FROM coches "+
                             "WHERE id = ?"
             );
-            instruccion.setInt(1, id_coche.get());
+            instruccion.setInt(1, id.get());
             return instruccion.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
@@ -145,28 +145,20 @@ public class CochePrueba {
         try {
             Statement instruccion = connection.createStatement();
             ResultSet resultado = instruccion.executeQuery(
-                    "SELECT A.codigo_alumno, " +
-                            "A.nombre, " +
-                            "A.apellido, " +
-                            "A.edad, " +
-                            "A.genero, " +
-                            "A.fecha_ingreso, " +
-                            "A.codigo_centro, " +
-                            "A.codigo_carrera, " +
-                            "B.nombre_carrera, " +
-                            "B.cantidad_asignaturas, " +
-                            "C.nombre_centro_estudio " +
+                    "SELECT A.marca, " +
+                            "A.modelo, " +
+                            "A.color, " +
+                            "A.precioBase " +
                             "FROM coches A "
 
             );
             while(resultado.next()){
                 lista.add(
                         new CochePrueba(
-                                resultado.getInt("id"),
                                 resultado.getString("marca"),
                                 resultado.getString("modelo"),
                                 resultado.getString("color"),
-                                resultado.getInt("precio_base")
+                                resultado.getInt("precioBase")
 
 
                         )

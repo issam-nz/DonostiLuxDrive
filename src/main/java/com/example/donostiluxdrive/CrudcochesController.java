@@ -1,7 +1,9 @@
-package com.example.donostiluxdrive.admin;
+package com.example.donostiluxdrive;
 
 
 
+import clases.CochePrueba;
+import com.example.donostiluxdrive.admin.Conexion;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
@@ -15,7 +17,7 @@ import java.net.URL;
 import java.sql.Connection;
 import java.util.ResourceBundle;
 
-public class CochesController implements Initializable {
+public class CrudcochesController implements Initializable {
 
     @FXML
     private Button btnActualizar;
@@ -61,14 +63,17 @@ public class CochesController implements Initializable {
     private ObservableList<CochePrueba> listaCoChe;
 
 
+
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        conexion = new Conexion();
+        Conexion conexion = new Conexion();
         conexion.establecerConexion();
+
         //Inicializar listas
         listaCoChe = FXCollections.observableArrayList();
         //Llenar listas
-        CochePrueba.llenarInformacionCoches(conexion.getConnection(), listaCoChe);
+        CochePrueba.llenarInformacionCoches(conexion.getConexion(), listaCoChe);
         //Enlazar listas con tablaView
         tblViewAlumnos.setItems(listaCoChe);
         //Enlazar columnas con atributos
@@ -88,9 +93,9 @@ public class CochesController implements Initializable {
                     public void changed(ObservableValue<? extends CochePrueba> arg0,
                                         CochePrueba valorAnterior, CochePrueba valorSeleccionado) {
                         if (valorSeleccionado!=null){
-                            marcaLabel.setText(String.valueOf(valorSeleccionado.getMarca());
+                            marcaLabel.setText(String.valueOf(valorSeleccionado.getMarca()));
                             modeloLabel.setText(valorSeleccionado.getModelo());
-                            colorLabel.setText(valorSeleccionado.getColor();
+                            colorLabel.setText(valorSeleccionado.getColor());
                             precioLabel.setText(String.valueOf(valorSeleccionado.getPrecio_base()));
 
                             btnGuardar.setDisable(true);
@@ -105,20 +110,24 @@ public class CochesController implements Initializable {
 
     @FXML
     public void guardarRegistro(){
+        Conexion conexion = new Conexion();
+
+        conexion.establecerConexion();
+
         //Crear una nueva instancia del tipo Alumno
-        CochePrueba a = new CochePrueba(0,
+        CochePrueba a = new CochePrueba(
                 marcaLabel.getText(),
                 modeloLabel.getText(),
                 colorLabel.getText(),
-                Integer.valueOf(precioLabel.getText()),
+                Integer.valueOf(precioLabel.getText()));
 
 
         //Llamar al metodo guardarRegistro de la clase Alumno
         conexion.establecerConexion();
-        int resultado = a.guardarRegistro(conexion.getConnection());
+        int resultant = a.guardarRegistro(conexion.getConexion());
         conexion.cerrarConexion();
 
-        if (resultado == 1){
+        if (resultant == 1){
             listaCoChe.add(a);
             //JDK 8u>40
             Alert mensaje = new Alert(Alert.AlertType.INFORMATION);
@@ -131,8 +140,8 @@ public class CochesController implements Initializable {
 
     @FXML
     public void actualizarRegistro(){
+        Conexion conexion = new Conexion();
         CochePrueba a = new CochePrueba(
-                Integer.valueOf(clmnId.getText()),
                 marcaLabel.getText(),
                 modeloLabel.getText(),
                 colorLabel.getText(),
@@ -142,7 +151,7 @@ public class CochesController implements Initializable {
                 //cmbCentroEstudio.getSelectionModel().getSelectedItem(),
                 //cmbCarrera.getSelectionModel().getSelectedItem());
         conexion.establecerConexion();
-        int resultado = a.actualizarRegistro(conexion.getConnection());
+        int resultado = a.actualizarRegistro(conexion.getConexion());
         conexion.cerrarConexion();
 
         if (resultado == 1){
@@ -158,8 +167,9 @@ public class CochesController implements Initializable {
 
     @FXML
     public void eliminarRegistro(){
+        Conexion conexion = new Conexion();
         conexion.establecerConexion();
-        int resultado = tblViewAlumnos.getSelectionModel().getSelectedItem().eliminarRegistro(conexion.getConnection());
+        int resultado = tblViewAlumnos.getSelectionModel().getSelectedItem().eliminarRegistro(conexion.getConexion());
         conexion.cerrarConexion();
 
         if (resultado == 1){

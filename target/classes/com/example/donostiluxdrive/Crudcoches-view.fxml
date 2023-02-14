@@ -13,7 +13,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.RowConstraints?>
 
-<AnchorPane prefHeight="358.0" prefWidth="1031.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.donostiluxdrive.admin.CochesController">
+<AnchorPane prefHeight="358.0" prefWidth="1031.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.donostiluxdrive.CrudcochesController">
    <children>
       <SplitPane dividerPositions="0.4101522842639594" layoutX="11.0" layoutY="21.0" prefHeight="358.0" prefWidth="987.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <items>
@@ -78,9 +78,9 @@
             </AnchorPane>
             <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="356.0" prefWidth="398.0">
                <children>
-                  <TableView fx:id="tblViewAlumnos" layoutX="78.0" layoutY="25.0" prefHeight="356.0" prefWidth="604.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                  <TableView fx:id="tblViewAlumnos" editable="true" layoutX="78.0" layoutY="25.0" prefHeight="356.0" prefWidth="604.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                      <columns>
-                        <TableColumn fx:id="clmnId" prefWidth="75.0" text="id" />
+                        <TableColumn fx:id="clmnId" prefWidth="75.0" style="-fx-text-fill: black;" text="id" />
                         <TableColumn fx:id="clmnMarca" prefWidth="128.0" text="Marca" />
                         <TableColumn fx:id="clmnModelo" prefWidth="108.0" text="Modelo" />
                         <TableColumn fx:id="clmnColor" prefWidth="130.0" text="Color" />

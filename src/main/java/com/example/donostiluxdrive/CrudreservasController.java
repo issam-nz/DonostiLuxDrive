@@ -1,11 +1,11 @@
-package com.example.donostiluxdrive.admin;
+package com.example.donostiluxdrive;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 
-public class ReservasController {
+public class CrudreservasController {
 
     @FXML
     private Button addButton;
