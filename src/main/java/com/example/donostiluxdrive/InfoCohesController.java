@@ -1,6 +1,5 @@
 package com.example.donostiluxdrive;
 
-import clases.Coche;
 import clases.MasInfoCoche;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -17,8 +16,16 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class InfoCohesController implements Initializable{
+public abstract class InfoCohesController implements Initializable{
 
+
+    @FXML
+    private Label precioLabel;
+    @FXML
+    private Label ColorLabel;
+
+    @FXML
+    private Label CaballosLabel;
 
     @FXML
     private Button alquilarButton;
@@ -71,7 +78,6 @@ public class InfoCohesController implements Initializable{
     private static MasInfoCoche coche;
 
     //Metodos
-
 
     @FXML
     void goToInicio(ActionEvent event) {
@@ -149,14 +155,38 @@ public class InfoCohesController implements Initializable{
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-            modeloLabel.setText(coche.getModelo());
-            anoLabel.setText(coche.getAno());
-            colorLabel.setText(coche.getColor());
-            prclabel.setText(coche.getPrecio_base());
-            cvLabel.setText(coche.getCaballos());
+
         }
-        public static void setCoche(MasInfoCoche coche) {
+        /*
+        public void setCoche(MasInfoCoche coche, String img1, String img2, String img3) {
+
             InfoCohesController.coche = coche;
+
+            Image image1 = new Image(img1);
+            Image image2 = new Image(img2);
+            Image image3 = new Image(img3);
+
+            this.marcaLabel.setText(InfoCohesController.coche.getMarca());
+            this.modeloLabel.setText(InfoCohesController.coche.getModelo());
+            this.CaballosLabel.setText(InfoCohesController.coche.getCaballos());
+            this.ColorLabel.setText(InfoCohesController.coche.getColor());
+            this.anoLabel.setText(InfoCohesController.coche.getAno());
+            this.precioLabel.setText(InfoCohesController.coche.getPrecio_base());
+
+            this.img1.setImage(image1);
+            this.img2.setImage(image2);
+            this.img3.setImage(image3);
+
+        }
+        */
+
+        public void rellenarCoche1(){
+            this.marcaLabel.setText(CochesController.coche1.getMarca());
+            this.modeloLabel.setText(CochesController.coche1.getModelo());
+            this.CaballosLabel.setText(CochesController.coche1.getCaballos());
+            this.ColorLabel.setText(CochesController.coche1.getColor());
+            this.anoLabel.setText(CochesController.coche1.getAno());
+            this.precioLabel.setText(CochesController.coche1.getPrecio_base());
         }
 }
 

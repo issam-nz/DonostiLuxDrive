@@ -60,14 +60,17 @@ public class CochesController {
     @FXML
     private Button signInButton;
 
+    public String clickedButton;
+
 
     //creacion de objetos de MasInfoCoches
-    private MasInfoCoche coche1 = new MasInfoCoche("Ferrari", "812GTS", "600", "rojo", "1990", "1000");
+    static MasInfoCoche coche1 = new MasInfoCoche("Ferrari", "812GTS", "600", "rojo", "1990", "1000");
     MasInfoCoche coche2 = new MasInfoCoche("Ferrari", "SF90STRADALE", "650", "rojo", "2002", "1200");
-    //MasInfoCoche coche3 = new MasInfoCoche("Rolls-Royce", "Spectre", 570, "amarillo", 2000, 1500);
-    //MasInfoCoche coche4 = new MasInfoCoche("Rolls-Royce", "Dawn", 550, "azul", 2005, 1100);
-    //MasInfoCoche coche5 = new MasInfoCoche("Bugatti", "Chiron", 600, "azul", 2010, 1550);
-    //MasInfoCoche coche6 = new MasInfoCoche("Mercedes", "AMGGT", 450, "gris", 2014, 1400);
+    MasInfoCoche coche3 = new MasInfoCoche("Rolls-Royce", "Spectre", "570", "amarillo", "2000", "1500");
+    MasInfoCoche coche4 = new MasInfoCoche("Rolls-Royce", "Dawn", "550", "azul", "2005", "1100");
+    MasInfoCoche coche5 = new MasInfoCoche("Bugatti", "Chiron", "600", "azul", "2010", "1550");
+    MasInfoCoche coche6 = new MasInfoCoche("Mercedes", "AMGGT", "450", "gris", "2014", "1400");
+
 
     @FXML
     void goToCoches(ActionEvent event) {
@@ -84,29 +87,33 @@ public class CochesController {
     }
     @FXML
     void goToInfoCoche(ActionEvent event) {
-        if (event.getSource()==infoCoche1Button)
-            try {
-                FXMLLoader loader = new FXMLLoader(getClass().getResource("InfoCoche-view.fxml"));
-                Parent root = loader.load();
+        if (event.getSource() == infoCoche1Button) {
+            clickedButton = "infoCoche1Button";
 
-                InfoCohesController controller = loader.getController();
-                controller.setCoche(coche1);
+        }
 
-                Scene scene = new Scene(root);
-                Stage stage = new Stage();
-                stage.setScene(scene);
-                stage.show();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
+        try {
 
+            Parent root = FXMLLoader.load(getClass().getResource("InfoCoche-view.fxml"));
+
+            Scene scene = new Scene(root);
+            Stage stage = (Stage) cochesButtonNav.getScene().getWindow();
+            stage.setScene(scene);
+            stage.show();
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+    }
+/*
         if (event.getSource()==infoCoche2Button)
             try {
                 FXMLLoader loader = new FXMLLoader(getClass().getResource("InfoCoche-view.fxml"));
                 Parent root = loader.load();
 
                 InfoCohesController controller = loader.getController();
-                controller.setCoche(coche2);
+                //controller.setCoche(coche2);
 
                 Scene scene = new Scene(root);
                 Stage stage = new Stage();
@@ -114,8 +121,8 @@ public class CochesController {
                 stage.show();
             } catch (IOException e) {
                 e.printStackTrace();
-            }
-    }
+            } */
+
 
 
     /*void infoCocheContenido(MasInfoCoche coche, String img1, String img2, String img3) {
