@@ -1,5 +1,7 @@
 package com.example.donostiluxdrive.form;
 
+import clases.Coche;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -37,4 +39,6 @@ public class MarcaFormularioController {
 
     }
 
+    public void setAvailableCars(ObservableList<Coche> cochesList) {
+    }
 }
