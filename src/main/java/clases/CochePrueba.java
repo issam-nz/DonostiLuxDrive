@@ -15,8 +15,9 @@ public class CochePrueba {
     private StringProperty color;
     private IntegerProperty precioBase;
 
-    public CochePrueba( String marca, String modelo, String color, int precioBase) {
+    public CochePrueba(int id, String marca, String modelo, String color, int precioBase) {
 
+        this.id = new SimpleIntegerProperty(id);
         this.marca = new SimpleStringProperty(marca);
         this.modelo = new SimpleStringProperty(modelo);
         this.color = new SimpleStringProperty(color);
@@ -141,11 +142,12 @@ public class CochePrueba {
     }
 
     public static void llenarInformacionCoches(Connection connection,
-                                                ObservableList<CochePrueba> lista){
+                                                ObservableList<CochePrueba> listaCoChe){
         try {
             Statement instruccion = connection.createStatement();
             ResultSet resultado = instruccion.executeQuery(
-                    "SELECT A.marca, " +
+                    "SELECT A.id," +
+                            "A.marca, " +
                             "A.modelo, " +
                             "A.color, " +
                             "A.precioBase " +
@@ -153,8 +155,9 @@ public class CochePrueba {
 
             );
             while(resultado.next()){
-                lista.add(
+                listaCoChe.add(
                         new CochePrueba(
+                                resultado.getInt("id"),
                                 resultado.getString("marca"),
                                 resultado.getString("modelo"),
                                 resultado.getString("color"),

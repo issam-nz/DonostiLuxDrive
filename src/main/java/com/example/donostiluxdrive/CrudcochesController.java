@@ -46,6 +46,10 @@ public class CrudcochesController implements Initializable {
     @FXML
     private TextField colorLabel;
 
+
+    @FXML
+    private TextField idLabel;
+
     @FXML
     private TextField marcaLabel;
 
@@ -56,7 +60,7 @@ public class CrudcochesController implements Initializable {
     private TextField precioLabel;
 
     @FXML
-    private TableView<CochePrueba> tblViewAlumnos;
+    private TableView<CochePrueba> tblCoches;
 
     private Connection conexion;
 
@@ -75,24 +79,25 @@ public class CrudcochesController implements Initializable {
         //Llenar listas
         CochePrueba.llenarInformacionCoches(conexion.getConexion(), listaCoChe);
         //Enlazar listas con tablaView
-        tblViewAlumnos.setItems(listaCoChe);
+        tblCoches.setItems(listaCoChe);
         //Enlazar columnas con atributos
         clmnId.setCellValueFactory(new PropertyValueFactory<CochePrueba,Number>("id"));
         clmnMarca.setCellValueFactory(new PropertyValueFactory<CochePrueba,String>("marca"));
         clmnModelo.setCellValueFactory(new PropertyValueFactory<CochePrueba,String>("modelo"));
         clmnColor.setCellValueFactory(new PropertyValueFactory<CochePrueba,String>("color"));
-        clmnPrecio.setCellValueFactory(new PropertyValueFactory<CochePrueba,Number>("precio"));
+        clmnPrecio.setCellValueFactory(new PropertyValueFactory<CochePrueba,Number>("precioBase"));
 
         gestionarEventos();
         conexion.cerrarConexion();
     }
     public void gestionarEventos(){
-        tblViewAlumnos.getSelectionModel().selectedItemProperty().addListener(
+        tblCoches.getSelectionModel().selectedItemProperty().addListener(
                 new ChangeListener<CochePrueba>() {
                     @Override
                     public void changed(ObservableValue<? extends CochePrueba> arg0,
                                         CochePrueba valorAnterior, CochePrueba valorSeleccionado) {
                         if (valorSeleccionado!=null){
+                            idLabel.setText(String.valueOf(valorSeleccionado.getMarca()));
                             marcaLabel.setText(String.valueOf(valorSeleccionado.getMarca()));
                             modeloLabel.setText(valorSeleccionado.getModelo());
                             colorLabel.setText(valorSeleccionado.getColor());
@@ -116,6 +121,7 @@ public class CrudcochesController implements Initializable {
 
         //Crear una nueva instancia del tipo Alumno
         CochePrueba a = new CochePrueba(
+                Integer.valueOf(idLabel.getText()),
                 marcaLabel.getText(),
                 modeloLabel.getText(),
                 colorLabel.getText(),
@@ -142,20 +148,18 @@ public class CrudcochesController implements Initializable {
     public void actualizarRegistro(){
         Conexion conexion = new Conexion();
         CochePrueba a = new CochePrueba(
+                Integer.valueOf(idLabel.getText()),
                 marcaLabel.getText(),
                 modeloLabel.getText(),
                 colorLabel.getText(),
                 Integer.valueOf(precioLabel.getText()));
-                //rbtFemenino.isSelected()?"F":"M",//Condicion?ValorVerdadero:ValorFalso
-                //Date.valueOf(dtpkrFecha.getValue()),
-                //cmbCentroEstudio.getSelectionModel().getSelectedItem(),
-                //cmbCarrera.getSelectionModel().getSelectedItem());
+
         conexion.establecerConexion();
         int resultado = a.actualizarRegistro(conexion.getConexion());
         conexion.cerrarConexion();
 
         if (resultado == 1){
-            listaCoChe.set(tblViewAlumnos.getSelectionModel().getSelectedIndex(),a);
+            listaCoChe.set(tblCoches.getSelectionModel().getSelectedIndex(),a);
             //JDK 8u>40
             Alert mensaje = new Alert(Alert.AlertType.INFORMATION);
             mensaje.setTitle("Registro actualizado");
@@ -169,11 +173,11 @@ public class CrudcochesController implements Initializable {
     public void eliminarRegistro(){
         Conexion conexion = new Conexion();
         conexion.establecerConexion();
-        int resultado = tblViewAlumnos.getSelectionModel().getSelectedItem().eliminarRegistro(conexion.getConexion());
+        int resultado = tblCoches.getSelectionModel().getSelectedItem().eliminarRegistro(conexion.getConexion());
         conexion.cerrarConexion();
 
         if (resultado == 1){
-            listaCoChe.remove(tblViewAlumnos.getSelectionModel().getSelectedIndex());
+            listaCoChe.remove(tblCoches.getSelectionModel().getSelectedIndex());
             //JDK 8u>40
             Alert mensaje = new Alert(Alert.AlertType.INFORMATION);
             mensaje.setTitle("Registro eliminado");
@@ -185,6 +189,7 @@ public class CrudcochesController implements Initializable {
 
     @FXML
     public void limpiarComponentes(){
+        idLabel.setText(null);
         marcaLabel.setText(null);
         modeloLabel.setText(null);
         colorLabel.setText(null);

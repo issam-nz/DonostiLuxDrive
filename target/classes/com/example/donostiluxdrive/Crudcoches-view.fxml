@@ -35,35 +35,41 @@
                         <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                      </rowConstraints>
                      <children>
-                        <Label text="Marca:">
+                        <Label text="Id:">
                            <padding>
                               <Insets right="5.0" />
                            </padding>
                         </Label>
-                        <Label text="Modelo:" GridPane.rowIndex="1">
+                        <Label text="Modelo:" GridPane.rowIndex="2">
                            <padding>
                               <Insets right="5.0" />
                            </padding>
                         </Label>
-                        <Label text="Color:" GridPane.rowIndex="2">
+                        <Label text="Color:" GridPane.rowIndex="3">
                            <padding>
                               <Insets right="5.0" />
                            </padding>
                         </Label>
-                        <Label text="Precio base:" GridPane.rowIndex="3">
+                        <Label text="Precio base:" GridPane.rowIndex="4">
                            <padding>
                               <Insets right="5.0" />
                            </padding>
                         </Label>
-                        <TextField fx:id="marcaLabel" disable="true" GridPane.columnIndex="1" />
-                        <TextField fx:id="modeloLabel" prefHeight="25.0" prefWidth="240.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                        <TextField fx:id="colorLabel" prefHeight="25.0" prefWidth="240.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-                        <TextField fx:id="precioLabel" prefHeight="25.0" prefWidth="71.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-                        <HBox prefHeight="100.0" prefWidth="200.0" spacing="15.0" GridPane.columnIndex="1" GridPane.rowIndex="4">
+                        <TextField fx:id="idLabel" disable="true" GridPane.columnIndex="1" />
+                        <TextField fx:id="modeloLabel" prefHeight="25.0" prefWidth="240.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                        <TextField fx:id="colorLabel" prefHeight="25.0" prefWidth="240.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                        <TextField fx:id="precioLabel" prefHeight="25.0" prefWidth="71.0" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                        <HBox prefHeight="100.0" prefWidth="200.0" spacing="15.0" GridPane.columnIndex="1" GridPane.rowIndex="5">
                            <padding>
                               <Insets left="2.0" top="8.0" />
                            </padding>
                         </HBox>
+                        <TextField fx:id="marcaLabel" prefHeight="25.0" prefWidth="240.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                        <Label text="Marca:" GridPane.rowIndex="1">
+                           <padding>
+                              <Insets right="5.0" />
+                           </padding>
+                        </Label>
                      </children>
                   </GridPane>
                   <HBox layoutX="14.0" layoutY="292.0" prefHeight="33.0" prefWidth="315.0" spacing="5.0">
@@ -78,7 +84,7 @@
             </AnchorPane>
             <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="356.0" prefWidth="398.0">
                <children>
-                  <TableView fx:id="tblViewAlumnos" editable="true" layoutX="78.0" layoutY="25.0" prefHeight="356.0" prefWidth="604.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                  <TableView fx:id="tblCoches" editable="true" layoutX="78.0" layoutY="25.0" prefHeight="356.0" prefWidth="604.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                      <columns>
                         <TableColumn fx:id="clmnId" prefWidth="75.0" style="-fx-text-fill: black;" text="id" />
                         <TableColumn fx:id="clmnMarca" prefWidth="128.0" text="Marca" />
