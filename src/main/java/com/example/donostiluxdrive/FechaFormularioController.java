@@ -28,13 +28,15 @@ public class FechaFormularioController {
 
     @FXML
     private Button nextButton;
-    ObservableList<Coche> cochesList;
+    static ObservableList<Coche> cochesList;
+    static LocalDate fechaIn;
+    static LocalDate fechaFin;
 
     @FXML
     void goToMarcaFormulario(ActionEvent event) throws IOException {
         // assuming fechaInPicker and fechaFinPicker are instances of DatePicker
-        LocalDate fechaIn = fechaInPicker.getValue();
-        LocalDate fechaFin = fechaFinPicker.getValue();
+        fechaIn = fechaInPicker.getValue();
+        fechaFin = fechaFinPicker.getValue();
 
         //mostrar un alert si el usuario o ha elijido nada
         if (fechaIn == null || fechaFin == null) {
