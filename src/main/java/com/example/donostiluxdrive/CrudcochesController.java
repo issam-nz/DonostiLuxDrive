@@ -2,7 +2,7 @@ package com.example.donostiluxdrive;
 
 
 
-import clases.CochePrueba;
+import clases.Crudcoche;
 import com.example.donostiluxdrive.admin.Conexion;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
@@ -29,19 +29,19 @@ public class CrudcochesController implements Initializable {
     private Button btnGuardar;
 
     @FXML
-    private TableColumn<CochePrueba, String> clmnColor;
+    private TableColumn<Crudcoche, String> clmnColor;
 
     @FXML
-    private TableColumn<CochePrueba, Number> clmnId;
+    private TableColumn<Crudcoche, Integer> clmnId;
 
     @FXML
-    private TableColumn<CochePrueba, String> clmnMarca;
+    private TableColumn<Crudcoche, String> clmnMarca;
 
     @FXML
-    private TableColumn<CochePrueba, String> clmnModelo;
+    private TableColumn<Crudcoche, String> clmnModelo;
 
     @FXML
-    private TableColumn<CochePrueba, Number> clmnPrecio;
+    private TableColumn<Crudcoche, Integer> clmnPrecio;
 
     @FXML
     private TextField colorLabel;
@@ -60,11 +60,11 @@ public class CrudcochesController implements Initializable {
     private TextField precioLabel;
 
     @FXML
-    private TableView<CochePrueba> tblCoches;
+    private TableView<Crudcoche> tblCoches;
 
     private Connection conexion;
 
-    private ObservableList<CochePrueba> listaCoChe;
+    private ObservableList<Crudcoche> listaCoChe;
 
 
 
@@ -77,27 +77,27 @@ public class CrudcochesController implements Initializable {
         //Inicializar listas
         listaCoChe = FXCollections.observableArrayList();
         //Llenar listas
-        CochePrueba.llenarInformacionCoches(conexion.getConexion(), listaCoChe);
+        Crudcoche.llenarInformacionCoches(conexion.getConexion(), listaCoChe);
         //Enlazar listas con tablaView
         tblCoches.setItems(listaCoChe);
         //Enlazar columnas con atributos
-        clmnId.setCellValueFactory(new PropertyValueFactory<CochePrueba,Number>("id"));
-        clmnMarca.setCellValueFactory(new PropertyValueFactory<CochePrueba,String>("marca"));
-        clmnModelo.setCellValueFactory(new PropertyValueFactory<CochePrueba,String>("modelo"));
-        clmnColor.setCellValueFactory(new PropertyValueFactory<CochePrueba,String>("color"));
-        clmnPrecio.setCellValueFactory(new PropertyValueFactory<CochePrueba,Number>("precioBase"));
+        clmnId.setCellValueFactory(cellData -> cellData.getValue().idProperty().asObject());
+        clmnMarca.setCellValueFactory(cellData -> cellData.getValue().marcaProperty());
+        clmnModelo.setCellValueFactory(cellData -> cellData.getValue().modeloProperty());
+        clmnColor.setCellValueFactory(cellData -> cellData.getValue().colorProperty());
+        clmnPrecio.setCellValueFactory(cellData -> cellData.getValue().precioProperty().asObject());
 
         gestionarEventos();
         conexion.cerrarConexion();
     }
     public void gestionarEventos(){
         tblCoches.getSelectionModel().selectedItemProperty().addListener(
-                new ChangeListener<CochePrueba>() {
+                new ChangeListener<Crudcoche>() {
                     @Override
-                    public void changed(ObservableValue<? extends CochePrueba> arg0,
-                                        CochePrueba valorAnterior, CochePrueba valorSeleccionado) {
+                    public void changed(ObservableValue<? extends Crudcoche> arg0,
+                                        Crudcoche valorAnterior, Crudcoche valorSeleccionado) {
                         if (valorSeleccionado!=null){
-                            idLabel.setText(String.valueOf(valorSeleccionado.getMarca()));
+                            idLabel.setText(String.valueOf(valorSeleccionado.getId()));
                             marcaLabel.setText(String.valueOf(valorSeleccionado.getMarca()));
                             modeloLabel.setText(valorSeleccionado.getModelo());
                             colorLabel.setText(valorSeleccionado.getColor());
@@ -116,12 +116,10 @@ public class CrudcochesController implements Initializable {
     @FXML
     public void guardarRegistro(){
         Conexion conexion = new Conexion();
-
         conexion.establecerConexion();
 
         //Crear una nueva instancia del tipo Alumno
-        CochePrueba a = new CochePrueba(
-                Integer.valueOf(idLabel.getText()),
+        Crudcoche a = new Crudcoche(
                 marcaLabel.getText(),
                 modeloLabel.getText(),
                 colorLabel.getText(),
@@ -147,7 +145,7 @@ public class CrudcochesController implements Initializable {
     @FXML
     public void actualizarRegistro(){
         Conexion conexion = new Conexion();
-        CochePrueba a = new CochePrueba(
+        Crudcoche a = new Crudcoche(
                 Integer.valueOf(idLabel.getText()),
                 marcaLabel.getText(),
                 modeloLabel.getText(),

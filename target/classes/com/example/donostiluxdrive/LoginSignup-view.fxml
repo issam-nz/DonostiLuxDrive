@@ -4,6 +4,7 @@
 <?import javafx.geometry.Rectangle2D?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
@@ -25,7 +26,11 @@
             </ImageView>
             <Pane prefHeight="817.0" prefWidth="1225.0" style="-fx-background-color: rgba(15, 15, 15, 0.9);">
                <children>
-                  <Pane layoutX="72.0" layoutY="198.0" prefHeight="561.0" prefWidth="1095.0" style="-fx-background-color: rgba(211, 216, 218, 0.2); -fx-background-radius: 8px;" />
+                  <Pane layoutX="72.0" layoutY="198.0" prefHeight="561.0" prefWidth="1095.0" style="-fx-background-color: rgba(211, 216, 218, 0.2); -fx-background-radius: 8px;">
+                     <children>
+                        <PasswordField fx:id="logContraTf" layoutX="783.0" layoutY="206.0" prefHeight="30.0" prefWidth="168.0" />
+                     </children></Pane>
+
                   <ImageView fitHeight="126.0" fitWidth="123.0" layoutX="571.0" layoutY="43.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../../../img/LogoCorto.png" />
@@ -51,7 +56,6 @@
                         <Font name="Noto Sans Condensed" size="28.0" />
                      </font>
                   </Label>
-                  <TextField fx:id="logContraTf" accessibleRole="PASSWORD_FIELD" layoutX="856.0" layoutY="402.0" prefHeight="30.0" prefWidth="168.0" />
                   <Label layoutX="894.0" layoutY="242.0" text="LOG IN" textFill="#9c4444" underline="true">
                      <font>
                         <Font name="Impact" size="40.0" />
