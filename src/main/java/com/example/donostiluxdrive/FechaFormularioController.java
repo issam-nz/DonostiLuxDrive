@@ -31,6 +31,8 @@ public class FechaFormularioController {
     static ObservableList<Coche> cochesList;
     static LocalDate fechaIn;
     static LocalDate fechaFin;
+    static Stage currentStage;
+
 
     @FXML
     void goToMarcaFormulario(ActionEvent event) throws IOException {
@@ -46,47 +48,48 @@ public class FechaFormularioController {
         //mostrar un alert si el usuario o ha elijo un fecha invalida
         if (fechaIn.isAfter(fechaFin)) {
             showAlertDialog("End date must be on or after start date.");
-        }
+        } else {
 
-        // assuming conn is a Connection object representing the MySQL database connection
-        String query = "SELECT * FROM coches WHERE id NOT IN " +
-                "(SELECT id_coche FROM reservas " +
-                "WHERE (fechaIn <= ? AND fechaFin >= ?) OR " +
-                "(fechaIn <= ? AND fechaFin >= ?) OR " +
-                "(fechaIn >= ? AND fechaFin <= ?))";
-        cochesList = FXCollections.observableArrayList();
+            // assuming conn is a Connection object representing the MySQL database connection
+            String query = "SELECT * FROM coches WHERE id NOT IN " +
+                    "(SELECT id_coche FROM reservas " +
+                    "WHERE (fechaIn <= ? AND fechaFin >= ?) OR " +
+                    "(fechaIn <= ? AND fechaFin >= ?) OR " +
+                    "(fechaIn >= ? AND fechaFin <= ?))";
+            cochesList = FXCollections.observableArrayList();
 
-        try (Connection conn = database.connectDb();
-             PreparedStatement stmt = conn.prepareStatement(query)) {
-            stmt.setDate(1, Date.valueOf(fechaIn));
-            stmt.setDate(2, Date.valueOf(fechaIn));
-            stmt.setDate(3, Date.valueOf(fechaFin));
-            stmt.setDate(4, Date.valueOf(fechaFin));
-            stmt.setDate(5, Date.valueOf(fechaIn));
-            stmt.setDate(6, Date.valueOf(fechaFin));
-            ResultSet rs = stmt.executeQuery();
-            while (rs.next()) {
-                int id = rs.getInt("id");
-                String marca = rs.getString("marca");
-                String modelo = rs.getString("modelo");
-                String color = rs.getString("color");
-                int precioBase = rs.getInt("precioBase");
-                Coche coche = new Coche(id, marca, modelo, color, precioBase);
-                cochesList.add(coche);
+            try (Connection conn = database.connectDb();
+                 PreparedStatement stmt = conn.prepareStatement(query)) {
+                stmt.setDate(1, Date.valueOf(fechaIn));
+                stmt.setDate(2, Date.valueOf(fechaIn));
+                stmt.setDate(3, Date.valueOf(fechaFin));
+                stmt.setDate(4, Date.valueOf(fechaFin));
+                stmt.setDate(5, Date.valueOf(fechaIn));
+                stmt.setDate(6, Date.valueOf(fechaFin));
+                ResultSet rs = stmt.executeQuery();
+                while (rs.next()) {
+                    int id = rs.getInt("id");
+                    String marca = rs.getString("marca");
+                    String modelo = rs.getString("modelo");
+                    String color = rs.getString("color");
+                    int precioBase = rs.getInt("precioBase");
+                    Coche coche = new Coche(id, marca, modelo, color, precioBase);
+                    cochesList.add(coche);
+                }
+            } catch (SQLException e) {
+                e.printStackTrace();
             }
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
 
-        //mostrar un alert si no hay ningun  coche disponible en la fecha elejida
-        if (cochesList.isEmpty()) {
-            showAlertDialog("There are no cars available in the specified date range.");
-        }
+            //mostrar un alert si no hay ningun  coche disponible en la fecha elejida
+            if (cochesList.isEmpty()) {
+                showAlertDialog("There are no cars available in the specified date range.");
+            }
 
-        //To pass the list of available cars to the next form, you can add the following code to the section that handles the case where one or more cars are available:
-        if (!cochesList.isEmpty()) {
-            goToMarcaFormulario();
-        };
+            //To pass the list of available cars to the next form, you can add the following code to the section that handles the case where one or more cars are available:
+            if (!cochesList.isEmpty()) {
+                goToMarcaFormulario();
+            }
+        }
     }
 
     public static void showAlertDialog(String mensaje) {
@@ -103,9 +106,18 @@ public class FechaFormularioController {
         MarcaFormularioController marcaFormController = loader.getController();
         marcaFormController.setAvailableCars(cochesList);
         Scene marcaFormScene = new Scene(marcaFormParent);
-        Stage currentStage = (Stage) nextButton.getScene().getWindow();
+        currentStage = (Stage) nextButton.getScene().getWindow();
         currentStage.setScene(marcaFormScene);
+
+        //reset the attributes in case the user auit
+        currentStage.setOnCloseRequest(event -> {
+            System.out.println("you have guit from MarcaForm");
+            cochesList = null;
+            fechaIn = null;
+            fechaFin = null;
+        });
         currentStage.show();
+
     }
 
 }

@@ -94,9 +94,9 @@ public class MarcaFormularioController {
             if (newValue != null) {
                 cocheElejido = FechaFormularioController.cochesList.filtered(coche ->
                         coche.getMarca().equals(marcaCombo.getValue()) &&
-                        coche.getModelo().equals(modeloCombo.getValue()) &&
-                        coche.getColor().equals(newValue)
-                        ).get(0);
+                                coche.getModelo().equals(modeloCombo.getValue()) &&
+                                coche.getColor().equals(newValue)
+                ).get(0);
 
                 //calculate the days
                 long diasLong = ChronoUnit.DAYS.between(FechaFormularioController.fechaIn, FechaFormularioController.fechaFin);
@@ -128,21 +128,31 @@ public class MarcaFormularioController {
     @FXML
     void goToClienteFormulario(ActionEvent event) throws IOException {
         //check if all the combos are filled, if not alert
-        if (marcaCombo == null || modeloCombo == null || colorCombo == null)
-                showAlertDialog("rellena todos los campos");
-        //save cocheElejido y fechaIn y fechaFin
-        marcaElejida = marcaCombo.getValue();
-        modeloElejido = modeloCombo.getValue();
-        colorElejido = colorCombo.getValue();
+        if (marcaCombo.getSelectionModel().isEmpty() || modeloCombo.getSelectionModel().isEmpty() || colorCombo.getSelectionModel().isEmpty()) {
+            showAlertDialog("rellena todos los campos");
+        } else {
+            //save cocheElejido y fechaIn y fechaFin
+            marcaElejida = marcaCombo.getValue();
+            modeloElejido = modeloCombo.getValue();
+            colorElejido = colorCombo.getValue();
 
-        //go to the  ClienteFormulario
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("ClienteFormulario-view.fxml"));
-        Parent clienteFormParent = loader.load();
-        ClienteFormularioController clienteFormController = loader.getController();
-        Scene clienteFormScene = new Scene(clienteFormParent);
-        Stage currentStage = (Stage) nextButton.getScene().getWindow();
-        currentStage.setScene(clienteFormScene);
-        currentStage.show();
+            //go to the  ClienteFormulario
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("ClienteFormulario-view.fxml"));
+            Parent clienteFormParent = loader.load();
+            ClienteFormularioController clienteFormController = loader.getController();
+            Scene clienteFormScene = new Scene(clienteFormParent);
+            Stage currentStage = (Stage) nextButton.getScene().getWindow();
+            currentStage.setScene(clienteFormScene);
+
+            //reset the attributes in case the user auit
+            currentStage.setOnCloseRequest(closeEvent -> {
+                marcaCombo.getSelectionModel().clearSelection();
+                modeloCombo.getSelectionModel().clearSelection();
+                colorCombo.getSelectionModel().clearSelection();
+            });
+
+            currentStage.show();
+        }
     }
 
     public static void showAlertDialog(String mensaje) {
