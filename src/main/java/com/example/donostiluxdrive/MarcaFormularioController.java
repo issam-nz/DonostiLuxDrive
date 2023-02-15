@@ -5,10 +5,15 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
+import javafx.stage.Stage;
 
+import java.io.IOException;
 import java.time.temporal.ChronoUnit;
 import java.util.stream.Collectors;
 
@@ -120,8 +125,23 @@ public class MarcaFormularioController {
 
 
     @FXML
-    void goToClienteFormulario(ActionEvent event) {
+    void goToClienteFormulario(ActionEvent event) throws IOException {
+        //check if all the combos are filled, if not alert
+        if (marcaCombo == null || modeloCombo == null || colorCombo == null)
+                FechaFormularioController.showAlertDialog("rellena todos los campos");
+        //save cocheElejido y fechaIn y fechaFin
+        marcaElejida = marcaCombo.getValue();
+        modeloElejido = modeloCombo.getValue();
+        colorElejido = colorCombo.getValue();
 
+        //go to the  ClienteFormulario
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("ClienteFormulario-view.fxml"));
+        Parent clienteFormParent = loader.load();
+        ClienteFormularioController clienteFormController = loader.getController();
+        Scene clienteFormScene = new Scene(clienteFormParent);
+        Stage currentStage = (Stage) nextButton.getScene().getWindow();
+        currentStage.setScene(clienteFormScene);
+        currentStage.show();
     }
 
 
@@ -137,5 +157,7 @@ public class MarcaFormularioController {
     }
 }
 
-// guardar marca modelo y color after the next button is clicked
+//proxima version:
+//    - Añadir un button de volver
+//    - Añadir unos labels para decir al cliente los informaciones que ha elejido
 
