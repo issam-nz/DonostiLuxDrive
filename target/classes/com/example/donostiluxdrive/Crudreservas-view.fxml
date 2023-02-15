@@ -14,9 +14,9 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.RowConstraints?>
 
-<AnchorPane prefHeight="358.0" prefWidth="1250.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.donostiluxdrive.CrudreservasController">
+<AnchorPane prefHeight="374.0" prefWidth="1250.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.donostiluxdrive.CrudreservasController">
    <children>
-      <SplitPane dividerPositions="0.327724358974359" layoutX="11.0" layoutY="21.0" prefHeight="358.0" prefWidth="987.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <SplitPane dividerPositions="0.327724358974359" layoutX="11.0" prefHeight="374.0" prefWidth="1250.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <items>
             <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="356.0" prefWidth="401.0">
                <children>
@@ -104,9 +104,9 @@
                   </HBox>
                </children>
             </AnchorPane>
-            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="356.0" prefWidth="398.0">
+            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="356.0" prefWidth="836.0">
                <children>
-                  <TableView fx:id="tblReserva" editable="true" layoutX="78.0" layoutY="25.0" prefHeight="356.0" prefWidth="604.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                  <TableView fx:id="tblReserva" editable="true" layoutY="2.0" prefHeight="356.0" prefWidth="836.0" AnchorPane.bottomAnchor="14.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="2.0">
                      <columns>
                         <TableColumn fx:id="idColumn" prefWidth="69.0" style="-fx-text-fill: black;" text="id" />
                         <TableColumn fx:id="idCocheColumn" prefWidth="110.0" text="id_coche" />
@@ -114,7 +114,7 @@
                         <TableColumn fx:id="fechaFinColumn" prefWidth="162.0" text="fechaFin" />
                         <TableColumn fx:id="emailColumn" prefWidth="108.0" text="email" />
                         <TableColumn fx:id="tefColumn" prefWidth="108.0" style="-fx-text-fill: black;" text="telefono" />
-                        <TableColumn fx:id="precioColumn" prefWidth="118.0" style="-fx-text-fill: black;" text="precioTotal" />
+                        <TableColumn fx:id="precioToalColumn" prefWidth="118.0" style="-fx-text-fill: black;" text="precioTotal" />
                      </columns>
                   </TableView>
                </children>

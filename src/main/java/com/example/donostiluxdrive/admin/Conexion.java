@@ -7,6 +7,8 @@ import java.sql.SQLException;
 public class Conexion {
     private Connection conexion;
     private String url = "jdbc:mysql://192.168.1.152:3306/donostiluxdrive";
+    //private String url = "jdbc:mysql://localhost/donostiluxdrive";
+
     private String usuario = "root";
     private String contrasena = "";
 
