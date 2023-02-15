@@ -6,9 +6,7 @@ import java.sql.DriverManager;
 public class database {
     public static Connection connectDb(){
         try{
-//            Connection connect = DriverManager.getConnection("jdbc:mysql://192.168.1.152/donostiluxdrive", "root", "");
-//            Connection connect = DriverManager.getConnection("jdbc:mysql://[::1]/donostiluxdrive", "root", "");
-            Connection connect = DriverManager.getConnection("jdbc:mysql://localhost/donostiluxdrive", "root", ""); // root is the default username while "" or empty is for the password
+            Connection connect = DriverManager.getConnection("jdbc:mysql://192.168.1.152:3306/donostiluxdrive", "root", "");
             return connect;
         }catch(Exception e){
             System.out.println("Database connection failed: " + e.getMessage());
