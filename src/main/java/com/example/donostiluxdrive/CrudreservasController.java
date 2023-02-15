@@ -4,6 +4,9 @@ import clases.CrudReserva;
 import clases.Crudcoche;
 import clases.Reserva;
 import com.example.donostiluxdrive.admin.Conexion;
+import javafx.beans.property.SimpleObjectProperty;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -17,6 +20,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 
 import java.net.URL;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.ResourceBundle;
 
@@ -53,10 +57,10 @@ public class CrudreservasController implements Initializable {
     private TableColumn<CrudReserva, Date> fechaInColumn;
 
     @FXML
-    private TableColumn<Crudcoche, Integer> idCocheColumn;
+    private TableColumn<CrudReserva, Crudcoche> idCocheColumn ;
 
     @FXML
-    private TextField idCocheLabel;
+    private TextField idCocheLabel ;
 
     @FXML
     private TableColumn<CrudReserva, Integer> idColumn;
@@ -68,7 +72,7 @@ public class CrudreservasController implements Initializable {
     private TextField nombreLabel;
 
     @FXML
-    private TableColumn<CrudReserva, Integer> precioColumn;
+    private TableColumn<CrudReserva, Integer> precioToalColumn;
 
     @FXML
     private TextField precioLabel;
@@ -117,14 +121,41 @@ public class CrudreservasController implements Initializable {
         tblReserva.setItems(listaReserva);
         //Enlazar columnas con atributos
         idColumn.setCellValueFactory(cellData -> cellData.getValue().idProperty().asObject());
-        idCocheColumn.setCellValueFactory(cellData -> cellData.getValue().idProperty().asObject());
-        fechaInColumn.setCellValueFactory(new PropertyValueFactory<CrudReserva, Date>("fechaIn"));
-        //fechaFinColumn.setCellValueFactory(new PropertyValueFactory<Crudcoche,String>("color"));
-        //emailColumn.setCellValueFactory(new PropertyValueFactory<Crudcoche,Integer>("precioBase"));
-        //tefColumn.setCellValueFactory(new PropertyValueFactory<Crudcoche,Integer>("precioBase"));
-        //precioColumn.setCellValueFactory(new PropertyValueFactory<Crudcoche,Integer>("precioBase"));
-
+        //idCocheColumn.setCellValueFactory(cellData -> (ObservableValue<Crudcoche>) new PropertyValueFactory<CrudReserva, Crudcoche>("id"));
+        fechaInColumn.setCellValueFactory(cellData -> new SimpleObjectProperty<Date>(cellData.getValue().getFechaIn()));
+        fechaFinColumn.setCellValueFactory(cellData -> new SimpleObjectProperty<Date>(cellData.getValue().getFechaFin()));
+        emailColumn.setCellValueFactory(cellData -> cellData.getValue().emailClienteProperty());
+        tefColumn.setCellValueFactory(cellData -> cellData.getValue().telefonoClienteProperty());
+        precioToalColumn.setCellValueFactory(cellData -> cellData.getValue().precioTotalProperty().asObject());
+        gestionarEventos();
         conexion.cerrarConexion();
 
+    }
+    public void gestionarEventos(){
+        tblReserva.getSelectionModel().selectedItemProperty().addListener(
+                new ChangeListener<CrudReserva>() {
+                    @Override
+                    public void changed(ObservableValue<? extends CrudReserva> arg0,
+                                        CrudReserva valorAnterior, CrudReserva valorSeleccionado) {
+                        if (valorSeleccionado!=null){
+                            idLabel.setText(String.valueOf(valorSeleccionado.getId()));
+                            idCocheLabel.setText(String.valueOf(valorSeleccionado.getCrudcoche().idProperty()));
+                            fechaInColumn.setText(valorSeleccionado.getFechaIn().toString());
+                            fechaFinColumn.setText(valorSeleccionado.getFechaFin().toString());
+
+                            emaiLabel.setText(String.valueOf(valorSeleccionado.getEmailCliente()));
+                            nombreLabel.setText(String.valueOf(valorSeleccionado.getNombreCliente()));
+                            apellidoLabel.setText(String.valueOf(valorSeleccionado.getApellidoCliente()));
+                            tefLabel.setText(String.valueOf(valorSeleccionado.getTelefonoCliente()));
+                            precioLabel.setText(String.valueOf(valorSeleccionado.getPrecioTotal()));
+
+                            btnGuardar.setDisable(true);
+                            btnEliminar.setDisable(false);
+                            btnActualizar.setDisable(false);
+                        }
+                    }
+
+                }
+        );
     }
 }

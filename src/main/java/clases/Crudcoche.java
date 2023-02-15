@@ -31,6 +31,13 @@ public class Crudcoche {
         this.color = new SimpleStringProperty(color);
         this.precioBase = new SimpleIntegerProperty(precioBase);
     }
+    public Crudcoche(int id) {
+
+        this.id = new SimpleIntegerProperty(id);
+
+    }
+
+
 
     //Metodos getter, setter and property
     //id
