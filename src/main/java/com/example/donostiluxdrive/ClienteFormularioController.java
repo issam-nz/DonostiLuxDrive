@@ -31,61 +31,62 @@ public class ClienteFormularioController {
     @FXML
     private TextField telefonoField;
 
-    Reserva reserva;
+    static Reserva reserva;
     boolean addedSuccessfully;
 
 
     public void confirmar(ActionEvent actionEvent) {
-        if (nombreField == null || apellidoField == null || emailField == null || telefonoField == null)
+        if (nombreField.getText().isEmpty() || apellidoField.getText().isEmpty() || emailField.getText().isEmpty() || telefonoField.getText().isEmpty()) {
             showAlertDialog("fill all the fields");
-        reserva = new Reserva(MarcaFormularioController.cocheElejido.getId_coche(),
-                FechaFormularioController.fechaIn,
-                FechaFormularioController.fechaFin,
-                nombreField.getText(),
-                apellidoField.getText(),
-                emailField.getText(),
-                telefonoField.getText(),
-                MarcaFormularioController.precioTotal
-        );
-        String query = "INSERT INTO reservas (id_coche, fechaIn, fechaFin, nombreCliente, apellidoCliente, emailCliente, telefonoCliente, precioTotal) " +
-                "VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+        } else {
+            reserva = new Reserva(MarcaFormularioController.cocheElejido.getId_coche(),
+                    FechaFormularioController.fechaIn,
+                    FechaFormularioController.fechaFin,
+                    nombreField.getText(),
+                    apellidoField.getText(),
+                    emailField.getText(),
+                    telefonoField.getText(),
+                    MarcaFormularioController.precioTotal
+            );
+            String query = "INSERT INTO reservas (id_coche, fechaIn, fechaFin, nombreCliente, apellidoCliente, emailCliente, telefonoCliente, precioTotal) " +
+                    "VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
 
-        try (Connection conn = database.connectDb();
-             PreparedStatement stmt = conn.prepareStatement(query)) {
-            stmt.setInt(1, reserva.getId_coche());
-            stmt.setDate(2, Date.valueOf(reserva.getFechaIn()));
-            stmt.setDate(3, Date.valueOf(reserva.getFechaFin()));
-            stmt.setString(4, reserva.getNombreCliente());
-            stmt.setString(5, reserva.getApellidoCliente());
-            stmt.setString(6, reserva.getEmailCliente());
-            stmt.setString(7, reserva.getTelefonoCliente());
-            stmt.setDouble(8, reserva.getPrecioTotal());
-            int rowsAffected = stmt.executeUpdate();
-            if (rowsAffected == 1) {
-                System.out.println("added successfully.");
-                addedSuccessfully = true;
+            try (Connection conn = database.connectDb();
+                 PreparedStatement stmt = conn.prepareStatement(query)) {
+                stmt.setInt(1, reserva.getId_coche());
+                stmt.setDate(2, Date.valueOf(reserva.getFechaIn()));
+                stmt.setDate(3, Date.valueOf(reserva.getFechaFin()));
+                stmt.setString(4, reserva.getNombreCliente());
+                stmt.setString(5, reserva.getApellidoCliente());
+                stmt.setString(6, reserva.getEmailCliente());
+                stmt.setString(7, reserva.getTelefonoCliente());
+                stmt.setDouble(8, reserva.getPrecioTotal());
+                int rowsAffected = stmt.executeUpdate();
+                if (rowsAffected == 1) {
+                    System.out.println("added successfully.");
+                    addedSuccessfully = true;
 
-            } else {
-                System.out.println("Error: no rows were affected by the insert operation.");
-                addedSuccessfully = true;
+                } else {
+                    System.out.println("Error: no rows were affected by the insert operation.");
+                    addedSuccessfully = true;
+                }
+            } catch (SQLException e) {
+                System.out.println("Error inserting new reserva: " + e.getMessage());
             }
-        } catch (SQLException e) {
-            System.out.println("Error inserting new reserva: " + e.getMessage());
-        }
 
-        if (addedSuccessfully) {
-            Alert info = new Alert(Alert.AlertType.INFORMATION);
-            info.setTitle("informacion");
-            info.setHeaderText(null);
-            info.setContentText("successfully");
-            info.showAndWait();
+            if (addedSuccessfully) {
+                Alert info = new Alert(Alert.AlertType.INFORMATION);
+                info.setTitle("informacion");
+                info.setHeaderText(null);
+                info.setContentText("successfully");
+                info.showAndWait();
+            }
+            //reset all the attributes
+                    reset();
+            //close the form
+            Stage currentStage = (Stage) confirmarButton.getScene().getWindow();
+            currentStage.close();
         }
-        //reset all the attributes
-        reset();
-        //close the form
-        Stage currentStage = (Stage) confirmarButton.getScene().getWindow();
-        currentStage.close();
-
     }
 
     public static void showAlertDialog(String mensaje) {
@@ -96,7 +97,7 @@ public class ClienteFormularioController {
         alert.showAndWait();
     }
 
-    public void reset() {
+    public static void reset() {
         FechaFormularioController.fechaIn = null;
         FechaFormularioController.fechaFin = null;
         FechaFormularioController.cochesList = null;
