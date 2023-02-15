@@ -30,7 +30,6 @@
                      <children>
                         <PasswordField fx:id="logContraTf" layoutX="783.0" layoutY="206.0" prefHeight="30.0" prefWidth="168.0" />
                      </children></Pane>
-
                   <ImageView fitHeight="126.0" fitWidth="123.0" layoutX="571.0" layoutY="43.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../../../img/LogoCorto.png" />
