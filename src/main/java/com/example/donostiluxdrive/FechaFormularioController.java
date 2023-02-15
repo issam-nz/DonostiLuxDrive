@@ -89,7 +89,7 @@ public class FechaFormularioController {
         };
     }
 
-    public void showAlertDialog(String mensaje) {
+    public static void showAlertDialog(String mensaje) {
         Alert alert = new Alert(Alert.AlertType.ERROR);
         alert.setTitle("Error");
         alert.setHeaderText(null);
