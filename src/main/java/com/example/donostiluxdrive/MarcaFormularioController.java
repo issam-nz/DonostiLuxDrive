@@ -8,6 +8,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
@@ -48,12 +49,12 @@ public class MarcaFormularioController {
     ObservableList<String> colores;
 
     int diasElejido; //cantidad de dias elejidos
-    int precioTotal; // precioBase * dias
+    static int precioTotal; // precioBase * dias
     String marcaElejida;
     String modeloElejido;
     String colorElejido;
 
-    Coche cocheElejido;
+    static Coche cocheElejido;
 
     public void initialize() {
         //add listener to marcaCombo to fill the modeloCombo
@@ -128,7 +129,7 @@ public class MarcaFormularioController {
     void goToClienteFormulario(ActionEvent event) throws IOException {
         //check if all the combos are filled, if not alert
         if (marcaCombo == null || modeloCombo == null || colorCombo == null)
-                FechaFormularioController.showAlertDialog("rellena todos los campos");
+                showAlertDialog("rellena todos los campos");
         //save cocheElejido y fechaIn y fechaFin
         marcaElejida = marcaCombo.getValue();
         modeloElejido = modeloCombo.getValue();
@@ -142,6 +143,14 @@ public class MarcaFormularioController {
         Stage currentStage = (Stage) nextButton.getScene().getWindow();
         currentStage.setScene(clienteFormScene);
         currentStage.show();
+    }
+
+    public static void showAlertDialog(String mensaje) {
+        Alert alert = new Alert(Alert.AlertType.ERROR);
+        alert.setTitle("Error");
+        alert.setHeaderText(null);
+        alert.setContentText(mensaje);
+        alert.showAndWait();
     }
 
 

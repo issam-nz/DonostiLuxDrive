@@ -1,11 +1,13 @@
 package clases;
 
+import java.time.LocalDate;
+
 public class Reserva {
     //Declaracion de variables
         int id_reserva;
         int id_coche;
-        String fechaIn;
-        String fechaFin;
+        LocalDate fechaIn;
+        LocalDate fechaFin;
         String nombreCliente;
         String apellidoCliente;
         String emailCliente;
@@ -13,8 +15,7 @@ public class Reserva {
         int precioTotal;
 
 
-    public Reserva(int id_reserva, int id_coche, String fechaIn, String fechaFin, String nombreCliente, String apellidoCliente, String emailCliente, String telefonoCliente, int precioTotal) {
-        this.id_reserva = id_reserva;
+    public Reserva(int id_coche, LocalDate fechaIn, LocalDate fechaFin, String nombreCliente, String apellidoCliente, String emailCliente, String telefonoCliente, int precioTotal) {
         this.id_coche = id_coche;
         this.fechaIn = fechaIn;
         this.fechaFin = fechaFin;
@@ -41,19 +42,19 @@ public class Reserva {
         this.id_coche = id_coche;
     }
 
-    public String getFechaIn() {
+    public LocalDate getFechaIn() {
         return fechaIn;
     }
 
-    public void setFechaIn(String fechaIn) {
+    public void setFechaIn(LocalDate fechaIn) {
         this.fechaIn = fechaIn;
     }
 
-    public String getFechaFin() {
+    public LocalDate getFechaFin() {
         return fechaFin;
     }
 
-    public void setFechaFin(String fechaFin) {
+    public void setFechaFin(LocalDate fechaFin) {
         this.fechaFin = fechaFin;
     }
 
