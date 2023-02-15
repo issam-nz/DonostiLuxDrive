@@ -61,16 +61,16 @@ public class CochesController {
     @FXML
     private Button signInButton;
 
-    public String clickedButton;
+    public static String clickedButton;
 
 
     //creacion de objetos de MasInfoCoches
     static MasInfoCoche coche1 = new MasInfoCoche("Ferrari", "812GTS", "600", "rojo", "1990", "1000");
-    MasInfoCoche coche2 = new MasInfoCoche("Ferrari", "SF90STRADALE", "650", "rojo", "2002", "1200");
-    MasInfoCoche coche3 = new MasInfoCoche("Rolls-Royce", "Spectre", "570", "amarillo", "2000", "1500");
-    MasInfoCoche coche4 = new MasInfoCoche("Rolls-Royce", "Dawn", "550", "azul", "2005", "1100");
-    MasInfoCoche coche5 = new MasInfoCoche("Bugatti", "Chiron", "600", "azul", "2010", "1550");
-    MasInfoCoche coche6 = new MasInfoCoche("Mercedes", "AMGGT", "450", "gris", "2014", "1400");
+    static MasInfoCoche coche2 = new MasInfoCoche("Ferrari", "SF90STRADALE", "650", "rojo", "2002", "1200");
+    static MasInfoCoche coche3 = new MasInfoCoche("Rolls-Royce", "Spectre", "570", "amarillo", "2000", "1500");
+    static MasInfoCoche coche4 = new MasInfoCoche("Rolls-Royce", "Dawn", "550", "azul", "2005", "1100");
+    static MasInfoCoche coche5 = new MasInfoCoche("Bugatti", "Chiron", "600", "azul", "2010", "1550");
+    static MasInfoCoche coche6 = new MasInfoCoche("Mercedes", "AMGGT", "450", "gris", "2014", "1400");
 
 
     @FXML
@@ -88,9 +88,20 @@ public class CochesController {
     }
     @FXML
     void goToInfoCoche(ActionEvent event) {
-//        if (event.getSource() == infoCoche1Button) {
-//            clickedButton = "infoCoche1Button";
-//        }
+        if (event.getSource() == infoCoche1Button) {
+            clickedButton = "infoCoche1Button";
+        } else if (event.getSource() == infoCoche2Button) {
+            clickedButton = "infoCoche2Button";
+        } else if (event.getSource() == infoCoche3Button) {
+            clickedButton = "infoCoche3Button";
+        } else if (event.getSource() == infoCoche4Button) {
+            clickedButton = "infoCoche4Button";
+        } else if (event.getSource() == infoCoche5Button) {
+            clickedButton = "infoCoche5Button";
+        } else if (event.getSource() == infoCoche6Button) {
+            clickedButton = "infoCoche6Button";
+        }
+
         try {
             Parent root = FXMLLoader.load(getClass().getResource("InfoCoche-view.fxml"));
             Scene scene = new Scene(root);

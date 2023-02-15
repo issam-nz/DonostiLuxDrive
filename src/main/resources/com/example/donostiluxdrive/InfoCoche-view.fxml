@@ -98,7 +98,7 @@
                               <Font name="Noto Serif Condensed Bold" size="25.0" />
                            </font>
                         </Label>
-                        <Button fx:id="cochesButton" layoutX="935.0" layoutY="484.0" mnemonicParsing="false" onAction="#goToCoches" prefHeight="45.0" prefWidth="266.0" styleClass="boton-inicio" stylesheets="@estilo.css" text="¡ALQUILAR AHORA!" textFill="#722424">
+                        <Button fx:id="cochesButton" layoutX="935.0" layoutY="514.0" mnemonicParsing="false" onAction="#goToReserva" prefHeight="45.0" prefWidth="266.0" styleClass="boton-inicio" stylesheets="@estilo.css" text="¡ALQUILAR AHORA!" textFill="#722424">
                            <font>
                               <Font name="Noto Sans Condensed Bold" size="21.0" />
                            </font>
@@ -124,9 +124,9 @@
                         <Font name="Noto Serif Condensed" size="21.0" />
                      </font>
                   </Button>
-                  <Button fx:id="cochesButtonNav" graphicTextGap="10.0" mnemonicParsing="false" onAction="#goToCoches" style="-fx-background-color: #252525;" text="Coches" textFill="#fcfcfc">
+                  <Button fx:id="cochesButtonNav" graphicTextGap="10.0" mnemonicParsing="false" onAction="#goToCoches" style="-fx-background-color: #252525;" styleClass="active" stylesheets="@estilo.css" text="Coches" textFill="#fcfcfc">
                      <font>
-                        <Font name="Noto Serif Condensed" size="20.0" />
+                        <Font name="Noto Serif Condensed Bold" size="21.0" />
                      </font>
                   </Button>
                   <Button fx:id="segurosButtonNav" mnemonicParsing="false" onAction="#goToSeguros" prefWidth="132.0" style="-fx-background-color: #252525;" text="Seguros" textFill="#fcfcfc">
