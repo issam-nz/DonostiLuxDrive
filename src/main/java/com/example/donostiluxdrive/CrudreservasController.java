@@ -53,13 +53,13 @@ public class CrudreservasController implements Initializable {
     private TableColumn<CrudReserva, Date> fechaInColumn;
 
     @FXML
-    private TableColumn<CrudReserva, Number> idCocheColumn;
+    private TableColumn<Crudcoche, Integer> idCocheColumn;
 
     @FXML
     private TextField idCocheLabel;
 
     @FXML
-    private TableColumn<CrudReserva, Number> idColumn;
+    private TableColumn<CrudReserva, Integer> idColumn;
 
     @FXML
     private TextField idLabel;
@@ -68,7 +68,7 @@ public class CrudreservasController implements Initializable {
     private TextField nombreLabel;
 
     @FXML
-    private TableColumn<CrudReserva, Number> precioColumn;
+    private TableColumn<CrudReserva, Integer> precioColumn;
 
     @FXML
     private TextField precioLabel;
@@ -116,9 +116,9 @@ public class CrudreservasController implements Initializable {
         //Enlazar listas con tablaView
         tblReserva.setItems(listaReserva);
         //Enlazar columnas con atributos
-        idColumn.setCellValueFactory(new PropertyValueFactory<CrudReserva,Number>("id"));
-        //idCocheColumn.setCellValueFactory(new PropertyValueFactory<Crudcoche,String>("marca"));
-        //fechaInColumn.setCellValueFactory(new PropertyValueFactory<Crudcoche,String>("modelo"));
+        idColumn.setCellValueFactory(cellData -> cellData.getValue().idProperty().asObject());
+        idCocheColumn.setCellValueFactory(cellData -> cellData.getValue().idProperty().asObject());
+        fechaInColumn.setCellValueFactory(new PropertyValueFactory<CrudReserva, Date>("fechaIn"));
         //fechaFinColumn.setCellValueFactory(new PropertyValueFactory<Crudcoche,String>("color"));
         //emailColumn.setCellValueFactory(new PropertyValueFactory<Crudcoche,Integer>("precioBase"));
         //tefColumn.setCellValueFactory(new PropertyValueFactory<Crudcoche,Integer>("precioBase"));

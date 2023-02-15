@@ -20,6 +20,7 @@ public class CrudReserva {
         StringProperty telefonoCliente;
         IntegerProperty precioTotal;
 
+        //Constructor
     public CrudReserva(Integer id, Crudcoche crudcoche, Date fechaIn, Date fechaFin, String nombreCliente, String apellidoCliente, String emailCliente, String telefonoCliente, Integer precioTotal) {
         this.id = new SimpleIntegerProperty(id);
         this.crudcoche = crudcoche ;
@@ -29,8 +30,22 @@ public class CrudReserva {
         this.apellidoCliente = new SimpleStringProperty(apellidoCliente);
         this.emailCliente = new SimpleStringProperty(emailCliente);
         this.telefonoCliente = new SimpleStringProperty(telefonoCliente);
-        this.precioTotal = new SimpleIntegerProperty(id);
+        this.precioTotal = new SimpleIntegerProperty(precioTotal);
     }
+    //Mestodos getter, setter y Property
+    //id
+    public int getId(){
+        return id.get();
+    }
+
+    public void setId(int id_coche){
+        this.id = new SimpleIntegerProperty(id_coche);
+    }
+    public IntegerProperty idProperty(){
+        return id;
+    }
+
+    //id_coche
 
     public static void llenarInformacionReservas(Connection connection, ObservableList<CrudReserva> listaReserva){
         try {
