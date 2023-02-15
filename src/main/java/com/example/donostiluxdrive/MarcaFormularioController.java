@@ -44,15 +44,15 @@ public class MarcaFormularioController {
     @FXML
     private Label precioTitleLabel;
 
-    ObservableList<String> marcas;//tabla de las marcas disponible
-    ObservableList<String> modelos;//los modelos de la marcaElejida - siempre los disponibles
-    ObservableList<String> colores;
+    static ObservableList<String> marcas;//tabla de las marcas disponible
+    static ObservableList<String> modelos;//los modelos de la marcaElejida - siempre los disponibles
+    static ObservableList<String> colores;
 
-    int diasElejido; //cantidad de dias elejidos
+    static int diasElejido; //cantidad de dias elejidos
     static int precioTotal; // precioBase * dias
-    String marcaElejida;
-    String modeloElejido;
-    String colorElejido;
+    static String marcaElejida;
+    static String modeloElejido;
+    static String colorElejido;
 
     static Coche cocheElejido;
 

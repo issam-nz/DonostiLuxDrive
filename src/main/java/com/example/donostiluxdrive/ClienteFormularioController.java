@@ -7,6 +7,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
+import javafx.stage.Stage;
 
 import java.sql.Connection;
 import java.sql.Date;
@@ -31,6 +32,7 @@ public class ClienteFormularioController {
     private TextField telefonoField;
 
     Reserva reserva;
+    boolean addedSuccessfully;
 
 
     public void confirmar(ActionEvent actionEvent) {
@@ -61,12 +63,28 @@ public class ClienteFormularioController {
             int rowsAffected = stmt.executeUpdate();
             if (rowsAffected == 1) {
                 System.out.println("added successfully.");
+                addedSuccessfully = true;
+
             } else {
                 System.out.println("Error: no rows were affected by the insert operation.");
+                addedSuccessfully = true;
             }
         } catch (SQLException e) {
             System.out.println("Error inserting new reserva: " + e.getMessage());
         }
+
+        if (addedSuccessfully) {
+            Alert info = new Alert(Alert.AlertType.INFORMATION);
+            info.setTitle("informacion");
+            info.setHeaderText(null);
+            info.setContentText("successfully");
+            info.showAndWait();
+        }
+        //reset all the attributes
+        reset();
+        //close the form
+        Stage currentStage = (Stage) confirmarButton.getScene().getWindow();
+        currentStage.close();
 
     }
 
@@ -76,6 +94,20 @@ public class ClienteFormularioController {
         alert.setHeaderText(null);
         alert.setContentText(mensaje);
         alert.showAndWait();
+    }
+
+    public void reset() {
+        FechaFormularioController.fechaIn = null;
+        FechaFormularioController.fechaFin = null;
+        FechaFormularioController.cochesList = null;
+        MarcaFormularioController.cocheElejido = null;
+        MarcaFormularioController.marcas = null;
+        MarcaFormularioController.modelos = null;
+        MarcaFormularioController.colores = null;
+        MarcaFormularioController.marcaElejida = null;
+        MarcaFormularioController.diasElejido = 0;
+        MarcaFormularioController.precioTotal = 0;
+        reserva = null;
     }
 }
 //when confirmar es clicked :
