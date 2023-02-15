@@ -120,7 +120,6 @@ public class CrudcochesController implements Initializable {
 
         //Crear una nueva instancia del tipo Alumno
         Crudcoche a = new Crudcoche(
-                Integer.valueOf(idLabel.getText()),
                 marcaLabel.getText(),
                 modeloLabel.getText(),
                 colorLabel.getText(),

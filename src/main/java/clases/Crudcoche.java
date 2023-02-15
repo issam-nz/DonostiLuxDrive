@@ -5,6 +5,7 @@ import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 import javafx.collections.ObservableList;
+import javafx.scene.control.Alert;
 
 import java.sql.*;
 
@@ -18,6 +19,13 @@ public class Crudcoche {
     public Crudcoche(int id, String marca, String modelo, String color, int precioBase) {
 
         this.id = new SimpleIntegerProperty(id);
+        this.marca = new SimpleStringProperty(marca);
+        this.modelo = new SimpleStringProperty(modelo);
+        this.color = new SimpleStringProperty(color);
+        this.precioBase = new SimpleIntegerProperty(precioBase);
+    }
+
+    public Crudcoche(String marca, String modelo, String color, int precioBase) {
         this.marca = new SimpleStringProperty(marca);
         this.modelo = new SimpleStringProperty(modelo);
         this.color = new SimpleStringProperty(color);
@@ -131,9 +139,12 @@ public class Crudcoche {
                     "DELETE FROM coches "+
                             "WHERE id = ?"
             );
-            instruccion.setInt(1, id.get());
+            instruccion.setInt(1, getId());
             return instruccion.executeUpdate();
         } catch (SQLException e) {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setContentText("Este esta reservado, no se puede eliminar");
+            alert.showAndWait();
             e.printStackTrace();
             return 0;
         }
