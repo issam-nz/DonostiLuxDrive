@@ -15,17 +15,17 @@
    <children>
     <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="200.0" prefWidth="200.0">
          <children>
-            <ImageView fitHeight="821.0" fitWidth="1225.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="895.0" fitWidth="1416.0" pickOnBounds="true" preserveRatio="true">
                <viewport>
                   <Rectangle2D />
                </viewport>
                <image>
-                  <Image url="@../../../img/LogoCorto.png" />
+                  <Image url="@../../../img/seguros-img.png" />
                </image>
             </ImageView>
             <Pane prefHeight="817.0" prefWidth="1225.0" style="-fx-background-color: rgba(15, 15, 15, 0.9);">
                <children>
-                  <Pane layoutX="72.0" layoutY="198.0" prefHeight="561.0" prefWidth="1095.0" style="-fx-background-color: rgba(211, 216, 218, 0.2);" />
+                  <Pane layoutX="72.0" layoutY="198.0" prefHeight="561.0" prefWidth="1095.0" style="-fx-background-color: rgba(211, 216, 218, 0.2); -fx-background-radius: 8px;" />
                   <ImageView fitHeight="126.0" fitWidth="123.0" layoutX="571.0" layoutY="43.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../../../img/LogoCorto.png" />
@@ -40,7 +40,7 @@
                         <String fx:value="boton-log-in" />
                      </styleClass>
                   </Button>
-                  <Label layoutX="768.0" layoutY="340.0" text="Email:" textFill="#ededed">
+                  <Label layoutX="740.0" layoutY="340.0" text="Usuario:" textFill="#ededed">
                      <font>
                         <Font name="Noto Sans Condensed" size="28.0" />
                      </font>
@@ -97,7 +97,7 @@
                      </font>
                   </Label>
                   <TextField fx:id="singTelfTF" accessibleRole="PASSWORD_FIELD" layoutX="310.0" layoutY="580.0" prefHeight="30.0" prefWidth="168.0" />
-                  <Button fx:id="salirVentanaButton" layoutX="1002.0" layoutY="116.0" mnemonicParsing="false" onAction="#gotToInicio" style="-fx-background-radius: 4px; -fx-border-radius: 4px;" styleClass="boton-inicio" stylesheets="@estilo.css" text="Salir de la Ventana" textFill="#464646">
+                  <Button fx:id="salirVentanaButton" layoutX="1088.0" layoutY="43.0" mnemonicParsing="false" onAction="#gotToInicio" prefHeight="45.0" prefWidth="79.0" style="-fx-background-radius: 4px; -fx-border-radius: 4px;" styleClass="boton-inicio" stylesheets="@estilo.css" text="Salir" textFill="#464646">
                      <font>
                         <Font name="Noto Sans Condensed Bold" size="18.0" />
                      </font>
